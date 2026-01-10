@@ -1,359 +1,842 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Samuel Mwangi — Systems Developer</title>
-  <meta name="description" content="Minimal single-page portfolio for Samuel Mwangi." />
+  <title>Samuel Mwangi — Tech Growth Engineer</title>
+  <meta name="description" content="Samuel Mwangi — Tech Growth Engineer (Software & Systems). Backend, automation, AI-enabled platforms, and operational systems." />
 
-  <!-- Tech favicon (computer) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0E14'/%3E%3Cg fill='none' stroke='%232047FF' stroke-width='4'%3E%3Crect x='12' y='14' width='40' height='28'/%3E%3Cpath d='M26 50h12'/%3E%3Cpath d='M20 46h24'/%3E%3C/g%3E%3C/svg%3E" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3CradialGradient id='g' cx='18%25' cy='12%25'%3E%3Cstop offset='0%25' stop-color='%232f66ff' stop-opacity='.45'/%3E%3Cstop offset='55%25' stop-color='%230b0f1a' stop-opacity='1'/%3E%3Cstop offset='100%25' stop-color='%23060a12' stop-opacity='1'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cg fill='none' stroke='%23b8c8ff' stroke-width='3.4'%3E%3Crect x='14' y='16' width='36' height='22' rx='6'/%3E%3Cpath d='M24 46h16'/%3E%3Cpath d='M20 42h24'/%3E%3C/g%3E%3C/svg%3E" />
 
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
   <style>
     :root{
-      --accent: #2047FF;
-      --accent-2: #1430B8;
-      --accent-tint: #E9EEFF;
-      --accent-tint-2: #F1F4FF;
-      --accent-tint-3: #EDF0FF;
+      /* Layout */
+      --maxw: 1180px;
+      --gutter: clamp(16px, 2.6vw, 28px);
 
-      --bg: #F6F7FA;
-      --surface: #FFFFFF;
-      --surface2: #F1F3F7;
-      --ink: rgba(10,14,22,0.92);
-      --muted: rgba(10,14,22,0.62);
-      --faint: rgba(10,14,22,0.44);
-      --line: rgba(10,14,22,0.12);
+      --r-xl: 28px;
+      --r-lg: 24px;
+      --r-md: 18px;
+      --pill: 999px;
 
-      --footer-bg: #0B0E14;
-      --footer-ink: rgba(255,255,255,0.86);
-      --footer-muted: rgba(255,255,255,0.58);
-      --footer-line: rgba(255,255,255,0.10);
-
-      --maxw: 1160px;
-      --gutter: clamp(16px, 2.4vw, 28px);
-      --radius: 0px;
-
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-
-      /* reduced by half */
-      --sec-y: clamp(23px, 3vw, 34px);
-
-      --shadow: 0 18px 40px rgba(0,0,0,0.08);
-      --shadow2: 0 12px 28px rgba(0,0,0,0.06);
-      --focus: 0 0 0 2px rgba(32,71,255,0.18), 0 0 0 1px rgba(32,71,255,0.55) inset;
-
-      /* fixed header height (used to offset the page + anchors) */
-      --header-h: 66px;
-      --anchor-gap: 14px;
+      --header-h: 74px;
+      --anchor-gap: 16px;
       --scroll-offset: calc(var(--header-h) + var(--anchor-gap));
+
+      /* Type */
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+      /* Adaptive type sizes */
+      --h1: clamp(34px, 5.2vw, 64px);
+      --h2: clamp(18px, 2.2vw, 24px);
+      --p: clamp(14px, 1.2vw, 16px);
+      --micro: clamp(11px, 0.9vw, 12px);
+      --tag: clamp(10px, 0.9vw, 11px);
+      --icon: clamp(16px, 1.6vw, 20px);
+
+      /* Theme (dark default) */
+      --bg0: #060912;
+      --bg1: #070a12;
+
+      --ink: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.62);
+      --faint: rgba(255,255,255,0.46);
+
+      --accent: #2f66ff;
+      --accent2: #1f4fda;
+
+      --line: rgba(255,255,255,0.12);
+      --line2: rgba(255,255,255,0.08);
+
+      --glass: rgba(15,20,34,0.56);
+      --glassBorder: rgba(255,255,255,0.12);
+      --blur: 16px;
+
+      --shadow: 0 26px 80px rgba(0,0,0,0.55);
+      --shadow2: 0 16px 48px rgba(0,0,0,0.45);
+
+      --chipBg: rgba(47,102,255,0.14);
+      --chipBorder: rgba(47,102,255,0.28);
+
+      --focus: 0 0 0 4px rgba(47,102,255,0.22);
     }
 
-    html, body{ height:100%; }
+    [data-theme="light"]{
+      --bg0: #f6f7fb;
+      --bg1: #ffffff;
+
+      --ink: rgba(11,15,26,0.92);
+      --muted: rgba(11,15,26,0.62);
+      --faint: rgba(11,15,26,0.46);
+
+      --line: rgba(11,15,26,0.12);
+      --line2: rgba(11,15,26,0.08);
+
+      --glass: rgba(255,255,255,0.64);
+      --glassBorder: rgba(11,15,26,0.10);
+
+      --shadow: 0 18px 48px rgba(11,15,26,0.10);
+      --shadow2: 0 12px 30px rgba(11,15,26,0.08);
+
+      --chipBg: rgba(47,102,255,0.08);
+      --chipBorder: rgba(47,102,255,0.20);
+
+      --focus: 0 0 0 4px rgba(47,102,255,0.18);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
       font-family: var(--sans);
       color: var(--ink);
       background:
-        radial-gradient(1200px 800px at 15% 8%, rgba(32,71,255,0.09), transparent 60%),
-        radial-gradient(1000px 700px at 85% 12%, rgba(0,0,0,0.04), transparent 60%),
-        linear-gradient(180deg, var(--bg), #FFFFFF);
-      letter-spacing: 0.1px;
+        radial-gradient(1100px 800px at 14% 10%, rgba(47,102,255,0.22), transparent 62%),
+        radial-gradient(900px 700px at 84% 18%, rgba(0,0,0,0.55), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      padding-top: calc(var(--header-h) + 12px);
+      overflow-x: hidden; /* hard stop for horizontal overflow */
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-
-      /* header is fixed now, so offset content */
-      padding-top: var(--header-h);
     }
 
-    *{ box-sizing:border-box; }
     a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+    .wrap{ max-width: var(--maxw); margin:0 auto; padding: 0 var(--gutter); }
 
-    /* FIX: prevent anchors from being hidden under fixed header */
-    section{ scroll-margin-top: var(--scroll-offset); }
-    [id]{ scroll-margin-top: var(--scroll-offset); }
+    section, [id]{ scroll-margin-top: var(--scroll-offset); }
 
-    .wrap{ max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
-
-    /* HEADER: FIXED */
+    /* ---------- Glass pill header ---------- */
     header{
       position: fixed;
-      top: 0;
+      top: 12px;
       left: 0;
       right: 0;
       z-index: 9999;
-      background: rgba(246,247,250,0.94);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(10,14,22,0.08);
-      box-shadow: 0 12px 26px rgba(0,0,0,0.06);
+      pointer-events: none;
     }
-    .top{ display:flex; align-items:center; justify-content: space-between; padding: 14px 0; gap: 18px; min-height: var(--header-h); }
+    .nav-shell{
+      pointer-events: auto;
+      margin: 0 auto;
+      width: min(var(--maxw), calc(100% - (var(--gutter)*2)));
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--pill);
+      background: var(--glass);
+      border: 1px solid var(--glassBorder);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+    }
 
-    .brand{ display:flex; align-items:center; gap: 12px; min-width: 140px; }
-
-    /* Computer logo */
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width: 200px;
+      max-width: 56%;
+    }
     .mark{
-      width: 34px; height: 34px;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(10,14,22,0.06), rgba(10,14,22,0.02));
-      box-shadow: 0 10px 22px rgba(0,0,0,0.06);
-      border-radius: var(--radius);
+      background:
+        radial-gradient(14px 14px at 30% 30%, rgba(47,102,255,0.60), rgba(47,102,255,0.10) 60%),
+        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
       display:flex;
       align-items:center;
       justify-content:center;
-      overflow:hidden;
-      position: relative;
+      flex: 0 0 auto;
     }
-    .mark:before{
-      content:"";
-      position:absolute;
-      inset:-50%;
-      background: repeating-linear-gradient(90deg, rgba(10,14,22,0.12) 0, rgba(10,14,22,0.12) 1px, transparent 1px, transparent 12px);
-      transform: rotate(12deg);
-      opacity: 0.16;
+    [data-theme="light"] .mark{
+      background:
+        radial-gradient(14px 14px at 30% 30%, rgba(47,102,255,0.55), rgba(47,102,255,0.08) 60%),
+        linear-gradient(180deg, rgba(11,15,26,0.06), rgba(11,15,26,0.03));
     }
-    .mark svg{ position: relative; z-index: 1; width: 18px; height: 18px; }
+    .mark svg{ width: 18px; height: 18px; }
     .mark svg *{ stroke: var(--accent); }
 
-    .brand strong{ font-size: 12px; font-weight: 650; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; }
-
-    nav{ display:flex; align-items:center; gap: 14px; flex-wrap: nowrap; justify-content: flex-end; }
-    .navlink{
-      font-size: 12px; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase;
-      padding: 10px 0; position: relative; white-space: nowrap;
+    .name{
+      min-width: 0;
+      display:flex;
+      flex-direction: column;
+      gap: 2px;
+      line-height: 1.1;
     }
-    .navlink:after{
-      content:""; position:absolute; left:0; right:0; bottom:6px; height:1px;
-      background: rgba(32,71,255,0.0);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 160ms ease, background 160ms ease;
+    .name strong{
+      font-size: var(--micro);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    .navlink:hover{ color: var(--ink); }
-    .navlink:hover:after{ background: rgba(32,71,255,0.55); transform: scaleX(1); }
+    .name span{
+      font-family: var(--mono);
+      font-size: calc(var(--micro) - 1px);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--faint);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-    .nav-icons{ display:flex; align-items:center; gap: 10px; }
-    .nav-icon{
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+    }
+    .navlinks a{
+      font-size: var(--micro);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 10px 12px;
+      border-radius: var(--pill);
+      transition: background 160ms ease, color 160ms ease;
+      white-space: nowrap;
+    }
+    .navlinks a:hover{
+      color: var(--ink);
+      background: rgba(47,102,255,0.12);
+    }
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+    .iconbtn{
+      width: 42px;
+      height: 42px;
+      border-radius: var(--pill);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(32,71,255,1);
-      background: var(--accent);
-      color: #fff;
-      border-radius: var(--radius);
-      box-shadow: 0 14px 26px rgba(32,71,255,0.16);
+      transition: transform 160ms ease, border 160ms ease, background 160ms ease;
+    }
+    [data-theme="light"] .iconbtn{ background: rgba(11,15,26,0.03); }
+    .iconbtn:hover{ transform: translateY(-1px); border-color: rgba(47,102,255,0.32); }
+    .iconbtn i{ font-size: var(--icon); line-height: 1; }
+
+    .cta{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border-radius: var(--pill);
+      padding: 10px 14px;
+      border: 1px solid rgba(47,102,255,0.35);
+      background: linear-gradient(180deg, rgba(47,102,255,0.95), rgba(31,79,218,0.92));
+      color:#fff;
+      box-shadow: 0 18px 46px rgba(47,102,255,0.22);
+      font-size: var(--micro);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      white-space: nowrap;
       transition: transform 160ms ease, filter 160ms ease;
+    }
+    .cta:hover{ transform: translateY(-1px); filter: brightness(0.99); }
+
+    /* Mobile menu */
+    .hamburger{ display:none; }
+    .mobile-menu{
+      position: fixed;
+      top: calc(12px + var(--header-h));
+      left: 0;
+      right: 0;
+      z-index: 9998;
+      display:none;
+    }
+    .mobile-panel{
+      margin: 0 auto;
+      width: min(var(--maxw), calc(100% - (var(--gutter)*2)));
+      border-radius: var(--r-lg);
+      background: var(--glass);
+      border: 1px solid var(--glassBorder);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      padding: 12px;
+      display:flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mobile-panel a{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,0.06);
+      font-size: var(--micro);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    [data-theme="light"] .mobile-panel a{ background: rgba(11,15,26,0.03); }
+
+    /* ---------- Sections ---------- */
+    .section{ padding: clamp(34px, 5vw, 64px) 0; }
+    .section-head{
+      display:flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: clamp(14px, 2vw, 18px);
+    }
+    .kicker{
+      margin: 0 0 12px;
+      font-family: var(--mono);
+      font-size: var(--micro);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      display:flex;
+      align-items:center;
+      gap: 10px;
+    }
+    .dot{
+      width: 10px;
+      height: 10px;
+      border-radius: var(--pill);
+      border: 1px solid rgba(47,102,255,0.55);
+      background: rgba(47,102,255,0.16);
       flex: 0 0 auto;
     }
-    .nav-icon.secondary{ border-color: rgba(20,48,184,1); background: var(--accent-2); box-shadow: 0 14px 26px rgba(20,48,184,0.14); }
-    .nav-icon:hover{ transform: translateY(-1px); filter: brightness(0.98); }
-    .nav-icon i{ font-size: 18px; line-height: 1; }
-
-    /* Sections (reduced padding) */
-    section{ padding: var(--sec-y) 0; border-top: 1px solid rgba(10,14,22,0.08); }
-    .band{ background: var(--surface2); }
-    .plain{ background: transparent; }
-
-    .kicker{ font-family: var(--mono); color: var(--faint); letter-spacing: 0.14em; text-transform: uppercase; font-size: 12px; margin: 0 0 10px; }
-    h1{ font-size: clamp(34px, 4.1vw, 56px); line-height: 1.05; margin: 0; font-weight: 650; letter-spacing: -0.02em; }
-    h2{ font-size: 22px; margin: 0; font-weight: 650; letter-spacing: -0.01em; }
-
-    /* HERO (also reduced) */
-    .hero{ padding: calc(var(--sec-y) + 14px) 0 var(--sec-y); }
-    .hero-grid{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(18px, 4vw, 44px); align-items: center; }
-    .role{ font-family: var(--mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); display:flex; align-items:center; gap: 10px; flex-wrap: wrap; }
-    .dot{ width:10px; height:10px; border: 1px solid rgba(32,71,255,0.55); background: rgba(32,71,255,0.12); border-radius: var(--radius); display:inline-block; transform: translateY(1px); }
-    .sub{ margin:0; max-width: 56ch; color: var(--muted); font-size: 15px; line-height: 1.55; }
-    .sub.note{ margin-top: 8px; color: rgba(10,14,22,0.56); font-size: 13px; }
-
-    .trust-row{ margin-top: 12px; display:grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    .trust{
-      display:flex; align-items:center; gap: 12px; padding: 14px 14px;
-      border: 1px solid var(--line);
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
-      transition: border 160ms ease, transform 160ms ease;
-      min-height: 64px;
+    h1{
+      margin: 0;
+      font-size: var(--h1);
+      letter-spacing: -0.03em;
+      line-height: 1.03;
+      font-weight: 900;
     }
-    .trust:hover{ border-color: rgba(32,71,255,0.40); transform: translateY(-1px); }
-    .trust.featured{ background: var(--accent-tint); border-color: rgba(32,71,255,0.28); }
+    h2{
+      margin: 0;
+      font-size: var(--h2);
+      font-weight: 850;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .muted{
+      margin: 0;
+      font-size: var(--p);
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+    .hide-sm{ display: block; }
 
-    .trust svg{ width:22px; height:22px; fill:none; stroke: rgba(10,14,22,0.86); stroke-width: 1.6; flex:0 0 auto; }
-    .label{ display:flex; flex-direction: column; gap: 2px; min-width:0; }
-    .label strong{ font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
-    .label span{ font-family: var(--mono); font-size: 12px; color: var(--muted); white-space: nowrap; overflow:hidden; text-overflow: ellipsis; }
+    /* ---------- Hero (less text, more space) ---------- */
+    .hero{
+      padding: clamp(42px, 6vw, 86px) 0 clamp(18px, 3vw, 30px);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: clamp(18px, 4vw, 46px);
+      align-items: start;
+    }
+    .hero-lead{
+      margin-top: 14px;
+      font-size: var(--p);
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+    .hero-actions{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border-radius: var(--pill);
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      font-size: var(--micro);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--ink);
+      transition: transform 160ms ease, border 160ms ease, background 160ms ease;
+      white-space: nowrap;
+    }
+    [data-theme="light"] .btn{ background: rgba(11,15,26,0.03); }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(47,102,255,0.32); }
+    .btn.primary{
+      border-color: rgba(47,102,255,0.35);
+      background: linear-gradient(180deg, rgba(47,102,255,0.95), rgba(31,79,218,0.92));
+      color: #fff;
+      box-shadow: 0 18px 46px rgba(47,102,255,0.22);
+    }
 
-    .hero-visual{ border: 1px solid var(--line); background: var(--surface); box-shadow: var(--shadow); border-radius: var(--radius); overflow:hidden; min-height: 360px; }
-    .hero-visual img{ width:100%; height:100%; display:block; object-fit: cover; }
+    .hero-media{
+      border-radius: var(--r-xl);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      min-height: clamp(320px, 40vw, 460px);
+    }
+    .hero-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.01);
+    }
+    .hero-media::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 420px at 20% 15%, rgba(47,102,255,0.22), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.38));
+      pointer-events:none;
+    }
 
-    .section-head{ display:flex; align-items:flex-end; justify-content: space-between; gap: 24px; margin-bottom: 14px; }
-    .section-head p{ margin:0; color: var(--muted); font-size: 14px; line-height: 1.55; max-width: 56ch; }
+    /* Focus floating panel (less text) */
+    .focus-panel{
+      position:absolute;
+      left: clamp(14px, 2vw, 18px);
+      right: clamp(14px, 2vw, 18px);
+      bottom: clamp(14px, 2vw, 18px);
+      border-radius: 18px;
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 14px;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 520px;
+    }
+    [data-theme="light"] .focus-panel{ background: rgba(255,255,255,0.58); }
+    .focus-top{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .focus-top strong{
+      font-size: var(--micro);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .focus-top span{
+      font-family: var(--mono);
+      font-size: var(--tag);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
 
-    .work-grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+    .chips{
+      display:flex;
+      flex-wrap: wrap;         /* no overflow */
+      gap: 10px;
+      align-items:flex-start;
+    }
+    .chip{
+      max-width: 100%;
+      border-radius: var(--pill);
+      padding: 10px 12px;
+      border: 1px solid var(--chipBorder);
+      background: var(--chipBg);
+      font-family: var(--mono);
+      font-size: var(--micro);
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      overflow-wrap: anywhere; /* no overflow */
+      word-break: break-word;  /* no overflow */
+      line-height: 1.35;
+    }
+
+    /* ---------- Work & Projects (more image, less text) ---------- */
+    .seg{
+      display:flex;
+      gap: 6px;
+      align-items:center;
+      border-radius: var(--pill);
+      padding: 6px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+      flex: 0 0 auto;
+    }
+    [data-theme="light"] .seg{ background: rgba(11,15,26,0.03); box-shadow: 0 8px 18px rgba(11,15,26,0.06); }
+    .seg a{
+      padding: 10px 14px;
+      border-radius: var(--pill);
+      font-size: var(--micro);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: background 160ms ease, color 160ms ease;
+      white-space: nowrap;
+    }
+    .seg a.active{
+      background: rgba(47,102,255,0.16);
+      color: var(--ink);
+    }
+    .seg a:hover{ color: var(--ink); }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(12px, 1.6vw, 16px);
+    }
     .span-6{ grid-column: span 6; }
     .span-12{ grid-column: span 12; }
 
-    .tile{ border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); overflow:hidden; box-shadow: var(--shadow2); transition: border 160ms ease, transform 160ms ease; display:flex; flex-direction: column; min-height: 320px; }
-    .tile:hover{ border-color: rgba(32,71,255,0.40); transform: translateY(-1px); }
-
-    .tile.featured{ background: var(--accent-tint); border-color: rgba(32,71,255,0.28); }
-    .tile.tint-a{ background: var(--accent-tint-2); }
-    .tile.tint-b{ background: var(--accent-tint-3); }
-
-    .img{ position: relative; height: 230px; border-bottom: 1px solid rgba(10,14,22,0.10); overflow:hidden; background: var(--surface2); }
-    .img img{ width:100%; height:100%; object-fit: cover; display:block; }
-
-    .body{ padding: 16px 18px 18px; display:flex; flex-direction: column; gap: 10px; flex: 1; }
-    .title{ display:flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-    .tile h3{ margin:0; font-size: 16px; font-weight: 650; letter-spacing: -0.01em; }
-    .tagline{ font-family: var(--mono); font-size: 12px; color: var(--faint); letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
-    .tile p{ margin:0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-
-    .links{ margin-top: auto; display:flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    .links a{ font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(10,14,22,0.80); border-bottom: 1px solid rgba(32,71,255,0); padding-bottom: 2px; transition: border 160ms ease, color 160ms ease; display:inline-flex; align-items:center; gap: 8px; }
-    .links a:hover{ color: rgba(10,14,22,0.92); border-bottom-color: rgba(32,71,255,0.55); }
-
-    .presence-grid{ display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
-    .cardlink{ display:block; }
-    .presence-card{
+    .project{
+      border-radius: var(--r-xl);
       border: 1px solid var(--line);
-      background: var(--surface);
-      border-radius: var(--radius);
+      background: rgba(255,255,255,0.04);
       box-shadow: var(--shadow2);
-      padding: 14px;
-      min-height: 96px;
+      overflow:hidden; /* no overflow */
+      position: relative;
+      min-height: clamp(340px, 36vw, 440px);
       display:flex;
       flex-direction: column;
+    }
+    [data-theme="light"] .project{ background: rgba(255,255,255,0.64); }
+
+    .project .img{
+      position:absolute;
+      inset:0;
+    }
+    .project .img img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.01);
+    }
+    .project .img::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(1000px 520px at 25% 18%, rgba(47,102,255,0.22), transparent 60%),
+        radial-gradient(900px 520px at 80% 40%, rgba(0,0,0,0.55), transparent 65%),
+        linear-gradient(180deg, rgba(0,0,0,0.10), rgba(0,0,0,0.62));
+      pointer-events:none;
+    }
+    [data-theme="light"] .project .img::after{
+      background:
+        radial-gradient(1000px 520px at 25% 18%, rgba(47,102,255,0.18), transparent 60%),
+        radial-gradient(900px 520px at 80% 40%, rgba(11,15,26,0.08), transparent 65%),
+        linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.72));
+    }
+
+    /* Icon cluster (spaced, no overlap) */
+    .icon-cluster{
+      position:absolute;
+      left: clamp(14px, 2vw, 18px);
+      top: clamp(14px, 2vw, 18px);
+      display:flex;
+      gap: 10px; /* spaced out */
+      padding: 8px;
+      border-radius: 18px;
+      border: 1px solid var(--line2);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    [data-theme="light"] .icon-cluster{ background: rgba(255,255,255,0.58); }
+    .badge{
+      width: clamp(40px, 5vw, 46px);
+      height: clamp(40px, 5vw, 46px);
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    [data-theme="light"] .badge{ background: rgba(11,15,26,0.03); }
+    .badge i{ font-size: clamp(16px, 1.8vw, 20px); }
+
+    /* Bottom content (minimal text) */
+    .project .content{
+      margin-top: auto;
+      position: relative;
+      padding: clamp(16px, 2.2vw, 20px);
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .row{
+      display:flex;
+      align-items: baseline;
       justify-content: space-between;
-      transition: border 160ms ease, transform 160ms ease;
+      gap: 12px;
+      flex-wrap: wrap;
+      min-width: 0;
     }
-    .cardlink:hover .presence-card{ border-color: rgba(32,71,255,0.40); transform: translateY(-1px); }
-    .presence-card.featured{ background: var(--accent-tint); border-color: rgba(32,71,255,0.28); }
-    .presence-grid .cardlink:nth-child(2n) .presence-card{ background: var(--accent-tint-2); }
-    .presence-grid .cardlink:nth-child(3n) .presence-card{ background: var(--accent-tint-3); }
-
-    .presence-top{ display:flex; align-items:center; justify-content: space-between; gap: 10px; }
-    .presence-top strong{ font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
-    .presence-top i{ font-size: 18px; color: rgba(10,14,22,0.86); }
-    .presence-meta{ font-family: var(--mono); font-size: 12px; color: var(--faint); letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; }
-
-    /* Skills list inside cards */
-    .skill-list{
-      list-style: none;
-      padding: 0;
-      margin: 12px 0 0;
-      display: grid;
-      gap: 8px;
+    .project h3{
+      margin:0;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
     }
-    .skill-list li{
+    .tag{
       font-family: var(--mono);
-      font-size: 12px;
-      color: rgba(10,14,22,0.72);
+      font-size: var(--tag);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      white-space: nowrap;
+    }
+    .desc{
+      margin:0;
+      color: var(--muted);
+      font-size: var(--p);
+      line-height: 1.55;
+      max-width: 62ch;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* adaptive */
+      -webkit-box-orient: vertical;
+      overflow: hidden; /* no overflow */
+    }
+
+    .project .actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      margin-top: 4px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--pill);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      font-family: var(--mono);
+      font-size: var(--micro);
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      line-height: 1.45;
-      padding-left: 10px;
-      position: relative;
+      transition: transform 160ms ease, border 160ms ease;
+      white-space: nowrap;
     }
-    .skill-list li:before{
-      content:"";
-      position:absolute;
-      left:0;
-      top: 0.55em;
-      width: 5px;
-      height: 1px;
-      background: rgba(32,71,255,0.55);
+    [data-theme="light"] .pill{ background: rgba(11,15,26,0.03); }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(47,102,255,0.32); }
+
+    /* ---------- Skills (keep clean, lots of whitespace) ---------- */
+    .skill-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: clamp(12px, 1.6vw, 16px);
+    }
+    .panel{
+      border-radius: var(--r-xl);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow2);
+      padding: clamp(16px, 2.2vw, 20px);
+      overflow:hidden;
+    }
+    [data-theme="light"] .panel{ background: rgba(255,255,255,0.64); }
+    .panel-top{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .panel-top strong{
+      font-size: var(--micro);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 850;
+    }
+    .panel-top i{ font-size: var(--icon); color: var(--faint); }
+
+    .list{
+      list-style:none;
+      margin: 0;
+      padding: 0;
+      display:grid;
+      gap: 8px;
+    }
+    .list li{
+      font-family: var(--mono);
+      font-size: var(--micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
-    .contact{ border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow2); display:flex; justify-content: space-between; align-items:center; gap: 16px; flex-wrap: wrap; }
-    .contact .left{ display:flex; flex-direction: column; gap: 6px; }
-    .contact .left strong{ font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; }
-    .contact .left span{ font-family: var(--mono); color: rgba(10,14,22,0.72); font-size: 12px; letter-spacing: 0.08em; }
+    /* ---------- Contact / Footer ---------- */
+    .contact{
+      border-radius: var(--r-xl);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow2);
+      padding: clamp(16px, 2.2vw, 20px);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      overflow:hidden;
+    }
+    [data-theme="light"] .contact{ background: rgba(255,255,255,0.64); }
+    .contact strong{
+      display:block;
+      font-size: var(--micro);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .contact span{
+      font-family: var(--mono);
+      font-size: var(--micro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
 
-    footer{ padding: 36px 0 40px; border-top: 1px solid var(--footer-line); background: var(--footer-bg); color: var(--footer-muted); font-family: var(--mono); font-size: 12px; }
-    .foot{ display:flex; flex-direction: column; justify-content: center; align-items:center; gap: 12px; text-align: center; }
-    .foot strong{ color: var(--footer-ink); letter-spacing: 0.10em; text-transform: uppercase; font-weight: 650; font-size: 12px; }
-    .foot-logo{ display:inline-flex; align-items:center; justify-content:center; width: 26px; height: 26px; border: 1px solid rgba(255,255,255,0.18); margin-right: 10px; }
-    .foot-logo svg{ width: 16px; height: 16px; }
-    .foot-logo svg *{ stroke: rgba(32,71,255,0.95); }
+    footer{
+      padding: clamp(40px, 6vw, 70px) 0;
+      color: var(--faint);
+      font-family: var(--mono);
+      font-size: var(--micro);
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+    }
+    .foot{
+      border-radius: var(--r-xl);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow2);
+      padding: 14px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      overflow:hidden;
+    }
+    [data-theme="light"] .foot{ background: rgba(255,255,255,0.64); }
 
-    .foot-links{ display:flex; gap: 14px; flex-wrap: wrap; justify-content: center; align-items:center; }
-    .foot-links a{ color: rgba(255,255,255,0.70); border-bottom: 1px solid rgba(32,71,255,0); padding-bottom: 2px; transition: border 160ms ease, color 160ms ease; }
-    .foot-links a:hover{ color: rgba(255,255,255,0.90); border-bottom-color: rgba(32,71,255,0.60); }
+    .foot-links{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .foot-links a{
+      padding: 10px 12px;
+      border-radius: var(--pill);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      transition: transform 160ms ease, border 160ms ease;
+      white-space: nowrap;
+    }
+    [data-theme="light"] .foot-links a{ background: rgba(11,15,26,0.03); }
+    .foot-links a:hover{ transform: translateY(-1px); border-color: rgba(47,102,255,0.32); }
 
-    .to-top{
+    /* ---------- Floating buttons: toTop ABOVE theme (as requested) ---------- */
+    .float-stack{
       position: fixed;
       right: clamp(14px, 2vw, 22px);
       bottom: clamp(14px, 2vw, 22px);
       z-index: 120;
       display:flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .floatbtn{
+      width: 52px;
+      height: 52px;
+      border-radius: var(--pill);
+      border: 1px solid rgba(47,102,255,0.35);
+      background: linear-gradient(180deg, rgba(47,102,255,0.95), rgba(31,79,218,0.92));
+      color: #fff;
+      box-shadow: 0 18px 44px rgba(47,102,255,0.22);
+      display:flex;
       align-items:center;
       justify-content:center;
-      width: 46px;
-      height: 46px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(32,71,255,1);
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 18px 34px rgba(32,71,255,0.18);
       cursor: pointer;
-      opacity: 0;
-      transform: translateY(6px);
-      pointer-events: none;
       transition: opacity 160ms ease, transform 160ms ease, filter 160ms ease;
     }
-    .to-top:hover{ filter: brightness(0.98); }
-    .to-top.show{ opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .to-top i{ font-size: 18px; }
+    .floatbtn i{ font-size: clamp(18px, 2vw, 22px); }
 
-    .to-top-tip{
-      position: fixed;
-      right: clamp(66px, 6vw, 86px);
-      bottom: clamp(22px, 2.5vw, 34px);
-      z-index: 121;
-      border: 1px solid rgba(10,14,22,0.14);
-      background: var(--surface);
-      color: rgba(10,14,22,0.80);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      padding: 10px 12px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow2);
+    /* toTop visibility */
+    .floatbtn.top{
       opacity: 0;
-      transform: translateY(6px);
+      transform: translateY(8px);
       pointer-events: none;
-      transition: opacity 160ms ease, transform 160ms ease;
-      white-space: nowrap;
     }
-    .to-top-tip.show{ opacity: 1; transform: translateY(0); }
+    .floatbtn.top.show{
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .floatbtn:hover{ filter: brightness(0.98); }
 
+    /* Accessibility */
     a:focus-visible, button:focus-visible{ outline:none; box-shadow: var(--focus); }
 
+    /* ---------- Responsiveness ---------- */
     @media (max-width: 1020px){
       .hero-grid{ grid-template-columns: 1fr; }
-      .hero-visual{ min-height: 280px; }
+      .section-head{ flex-direction: column; align-items: flex-start; }
       .span-6{ grid-column: span 12; }
+      .skill-grid{ grid-template-columns: 1fr; }
+      .brand{ max-width: 70%; }
+      .hide-sm{ display:none; } /* less text on smaller screens */
+      .desc{ -webkit-line-clamp: 1; } /* even less text */
     }
     @media (max-width: 840px){
-      .trust-row{ grid-template-columns: 1fr; }
-      .section-head{ flex-direction: column; align-items: flex-start; }
-      .presence-grid{ grid-template-columns: 1fr; }
+      .navlinks{ display:none; }
+      .hamburger{ display:inline-flex; }
     }
-    @media (max-width: 640px){
-      nav{ gap: 10px; }
-      .navlink{ display:none; }
-      .brand strong{ font-size: 11px; }
-      .img{ height: 200px; }
+    @media (max-width: 520px){
+      .brand{ min-width: 0; }
+      .mark{ width: 40px; height: 40px; }
+      .cta{ display:none; } /* keep header clean on tiny screens */
+      .project h3{ white-space: normal; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; }
+      .icon-cluster{ gap: 8px; }
+      .badge{ border-radius: 14px; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -363,204 +846,385 @@
 </head>
 
 <body>
-  <header>
-    <div class="wrap">
-      <div class="top">
-        <div class="brand">
-          <div class="mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="12" stroke-width="1.8" />
-              <path d="M8 20h8" stroke-width="1.8" />
-              <path d="M6 18h12" stroke-width="1.8" />
-            </svg>
-          </div>
-          <strong>SAMUEL MWANGI</strong>
+  <header aria-label="Top navigation">
+    <div class="nav-shell" role="navigation" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <div class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="12" rx="3.2" stroke-width="1.8" />
+            <path d="M8 20h8" stroke-width="1.8" />
+            <path d="M6 18h12" stroke-width="1.8" />
+          </svg>
         </div>
+        <div class="name">
+          <strong>SAMUEL MWANGI</strong>
+          <span>Tech Growth Engineer</span>
+        </div>
+      </a>
 
-        <nav aria-label="Primary">
-          <a class="navlink" href="#work">Work</a>
-          <a class="navlink" href="#skills">Skills</a>
-          <a class="navlink" href="#presence">Links</a>
-          <a class="navlink" href="#contact">Contact</a>
+      <nav class="navlinks" aria-label="Section links">
+        <a href="#work">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-          <div class="nav-icons" aria-label="Social links">
-            <a class="nav-icon secondary" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer" aria-label="GitHub">
-              <i class="bi bi-github" aria-hidden="true"></i>
-            </a>
-            <a class="nav-icon" href="https://www.linkedin.com/in/samuel-mwangi-11597a245/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-              <i class="bi bi-linkedin" aria-hidden="true"></i>
-            </a>
-          </div>
-        </nav>
+      <div class="nav-actions">
+        <a class="iconbtn" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <i class="bi bi-github" aria-hidden="true"></i>
+        </a>
+        <a class="iconbtn" href="https://www.linkedin.com/in/samuel-mwangi-11597a245/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <i class="bi bi-linkedin" aria-hidden="true"></i>
+        </a>
+
+        <button class="iconbtn hamburger" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <i class="bi bi-list" aria-hidden="true"></i>
+        </button>
+
+        <a class="cta" href="#contact" aria-label="Jump to contact">
+          <i class="bi bi-send" aria-hidden="true"></i>
+          Contact
+        </a>
       </div>
     </div>
   </header>
 
-  <main>
-    <section class="plain hero" id="top">
+  <!-- Mobile dropdown -->
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <div class="mobile-panel" role="dialog" aria-label="Mobile menu">
+      <a href="#work"><span>Work</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+      <a href="#skills"><span>Skills</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+      <a href="#contact"><span>Contact</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top: 6px;">
+        <a class="btn" style="flex:1;" href="mailto:samuelmwas262@gmail.com"><i class="bi bi-envelope" aria-hidden="true"></i>Email</a>
+        <a class="btn" style="flex:1;" href="final%20samuel%20mwangi%20cv.pdf" target="_blank" rel="noreferrer"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>CV</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
       <div class="wrap">
         <div class="hero-grid">
           <div>
-            <div class="role">
-              <span class="dot" aria-hidden="true"></span>
-              <span>Tech Growth Engineer — Software & Systems</span>
-            </div>
-
+            <p class="kicker"><span class="dot" aria-hidden="true"></span> Software & Systems</p>
             <h1>Build it. Keep it running.</h1>
-            <p class="sub">Backend, automation, and management systems.</p>
-            <p class="sub note">Systems-minded engineer with a biomedical engineering foundation. I build scalable digital systems that remove bottlenecks and cut downtime.</p>
 
-            <div class="trust-row" aria-label="Primary links">
-              <a class="trust featured" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 19c-4 1.2-4-2-5-2" />
-                  <path d="M15 22v-3.2c0-1 .1-1.7-.4-2.4 2.8-.3 5.7-1.4 5.7-6.2 0-1.4-.5-2.6-1.3-3.5.1-.3.6-1.7-.1-3.5 0 0-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.9 1.2 6 1.5 6 1.5c-.7 1.8-.2 3.2-.1 3.5C5.1 5.9 4.6 7.1 4.6 8.5c0 4.8 2.9 5.9 5.7 6.2-.4.5-.5 1.1-.5 2.2V22" />
-                </svg>
-                <div class="label"><strong>GitHub</strong><span>scriptedSyntax</span></div>
-              </a>
+            <!-- Keep it short; whitespace does the work -->
+            <p class="hero-lead hide-sm">
+              Backend, automation, AI-enabled platforms — built for real operations.
+            </p>
 
-              <a class="trust" href="https://www.linkedin.com/in/samuel-mwangi-11597a245/" target="_blank" rel="noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
-                  <path d="M2 9h4v12H2z" />
-                  <path d="M4 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
-                </svg>
-                <div class="label"><strong>LinkedIn</strong><span>samuel-mwangi</span></div>
-              </a>
-
-              <a class="trust" href="mailto:samuelmwas262@gmail.com">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 4h16v16H4z" />
-                  <path d="m4 7 8 6 8-6" />
-                </svg>
-                <div class="label"><strong>Email</strong><span>samuelmwas262@gmail.com</span></div>
-              </a>
+            <div class="hero-actions">
+              <a class="btn primary" href="#work"><i class="bi bi-grid" aria-hidden="true"></i>View work</a>
+              <a class="btn" href="final%20samuel%20mwangi%20cv.pdf" target="_blank" rel="noreferrer"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>CV</a>
+              <a class="btn" href="mailto:samuelmwas262@gmail.com"><i class="bi bi-envelope" aria-hidden="true"></i>Email</a>
             </div>
           </div>
 
-          <div class="hero-visual" aria-label="Hero image">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80" alt="Code workspace" />
-          </div>
+          <aside class="hero-media" aria-label="Hero image">
+            <!-- Real image (swap anytime) -->
+            <img
+              src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1800&q=80"
+              alt="System and backend workspace"
+              loading="eager"
+            />
+
+            <!-- Subtle focus panel (no overflow; wraps) -->
+            <div class="focus-panel" aria-label="Focus panel">
+              <div class="focus-top">
+                <strong>Focus</strong>
+                <span>Backend • Automation • AI</span>
+              </div>
+              <div class="chips" aria-label="Focus chips">
+                <span class="chip">Django / REST</span>
+                <span class="chip">Azure-ready</span>
+                <span class="chip">CI/CD</span>
+                <span class="chip">RAG-style patterns</span>
+              </div>
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <section class="band" id="work">
+    <!-- WORK -->
+    <section class="section" id="work">
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="kicker">Work &amp; Projects</p>
-            <h2>Management systems + repos.</h2>
+            <p class="kicker"><span class="dot" aria-hidden="true"></span> Work & Projects</p>
+            <h2>Shipped systems + public repos.</h2>
           </div>
-          <p>Selected systems shipped for real-world operations + public repos.</p>
+
+          <div style="display:flex; flex-direction:column; gap:12px; align-items:flex-end;">
+            <p class="muted hide-sm">Selected management systems and utilities built for real-world operations.</p>
+
+            <!-- Keep the ALL / SYSTEMS / REPOS exactly as your screenshot vibe, but not “picky”.
+                 These just jump to anchors (no filtering, no hiding). -->
+            <div class="seg" aria-label="Work quick nav">
+              <a class="active" href="#work">ALL</a>
+              <a href="#systems">SYSTEMS</a>
+              <a href="#repos">REPOS</a>
+            </div>
+          </div>
         </div>
 
-        <div class="work-grid">
-          <article class="tile featured span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80" alt="Property management system" /></div>
-            <div class="body">
-              <div class="title"><h3>Property Management Hub</h3><div class="tagline">Management System</div></div>
-              <p>Property + tenants + tracking.</p>
-              <div class="links"><a href="mailto:samuelmwas262@gmail.com?subject=Property%20Management%20Hub%20-%20Request"><i class="bi bi-envelope" aria-hidden="true"></i> Request</a></div>
+        <!-- SYSTEMS -->
+        <div id="systems"></div>
+        <div class="grid" style="margin-top: clamp(8px, 1.6vw, 14px);">
+          <article class="project span-6" aria-label="Property Management Hub">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-building"></i></div>
+              <div class="badge"><i class="bi bi-people"></i></div>
+              <div class="badge"><i class="bi bi-graph-up"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>Property Management Hub</h3>
+                <span class="tag">Management System</span>
+              </div>
+              <p class="desc">Property + tenants + tracking.</p>
+              <div class="actions">
+                <a class="pill" href="mailto:samuelmwas262@gmail.com?subject=Property%20Management%20Hub%20-%20Request">
+                  <i class="bi bi-envelope" aria-hidden="true"></i> Request
+                </a>
+              </div>
             </div>
           </article>
 
-          <article class="tile tint-a span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1600&q=80" alt="User system" /></div>
-            <div class="body">
-              <div class="title"><h3>User System</h3><div class="tagline">Auth / Roles</div></div>
-              <p>Users, roles, access control.</p>
-              <div class="links"><a href="mailto:samuelmwas262@gmail.com?subject=User%20System%20-%20Request"><i class="bi bi-envelope" aria-hidden="true"></i> Request</a></div>
+          <article class="project span-6" aria-label="User System">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-person-badge"></i></div>
+              <div class="badge"><i class="bi bi-shield-lock"></i></div>
+              <div class="badge"><i class="bi bi-key"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>User System</h3>
+                <span class="tag">Auth / Roles</span>
+              </div>
+              <p class="desc">Users, roles, access control.</p>
+              <div class="actions">
+                <a class="pill" href="mailto:samuelmwas262@gmail.com?subject=User%20System%20-%20Request">
+                  <i class="bi bi-envelope" aria-hidden="true"></i> Request
+                </a>
+              </div>
             </div>
           </article>
 
-          <article class="tile tint-b span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80" alt="Church management system" /></div>
-            <div class="body">
-              <div class="title"><h3>Church Management System</h3><div class="tagline">Management System</div></div>
-              <p>Members, events, records.</p>
-              <div class="links"><a href="mailto:samuelmwas262@gmail.com?subject=Church%20Management%20System%20-%20Request"><i class="bi bi-envelope" aria-hidden="true"></i> Request</a></div>
+          <article class="project span-12" aria-label="Healthline SMS">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-chat-square-text"></i></div>
+              <div class="badge"><i class="bi bi-graph-up-arrow"></i></div>
+              <div class="badge"><i class="bi bi-plug"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>Healthline SMS</h3>
+                <span class="tag">SMS / Dashboard</span>
+              </div>
+              <p class="desc">Landing + dashboard + SMS API.</p>
+              <div class="actions">
+                <a class="pill" href="mailto:samuelmwas262@gmail.com?subject=Healthline%20SMS%20-%20Request">
+                  <i class="bi bi-envelope" aria-hidden="true"></i> Request
+                </a>
+              </div>
             </div>
           </article>
 
-          <article class="tile span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1600&q=80" alt="Children home landing" /></div>
-            <div class="body">
-              <div class="title"><h3>Children Home Landing</h3><div class="tagline">Landing</div></div>
-              <p>Simple public-facing site.</p>
-              <div class="links"><a href="mailto:samuelmwas262@gmail.com?subject=Children%20Home%20Landing%20-%20Request"><i class="bi bi-envelope" aria-hidden="true"></i> Request</a></div>
+          <article class="project span-6" aria-label="Main SMS Platform">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-envelope-paper"></i></div>
+              <div class="badge"><i class="bi bi-diagram-3"></i></div>
+              <div class="badge"><i class="bi bi-tools"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>Main SMS Platform</h3>
+                <span class="tag">Messaging</span>
+              </div>
+              <p class="desc">Core SMS utilities.</p>
+              <div class="actions">
+                <a class="pill" href="mailto:samuelmwas262@gmail.com?subject=Main%20SMS%20Platform%20-%20Request">
+                  <i class="bi bi-envelope" aria-hidden="true"></i> Request
+                </a>
+              </div>
             </div>
           </article>
 
-          <article class="tile span-12">
-            <div class="img" style="height: 280px;"><img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1800&q=80" alt="SMS platform" /></div>
-            <div class="body">
-              <div class="title"><h3>Healthline SMS</h3><div class="tagline">SMS / Dashboard</div></div>
-              <p>Landing + dashboard + SMS API.</p>
-              <div class="links"><a href="mailto:samuelmwas262@gmail.com?subject=Healthline%20SMS%20-%20Request"><i class="bi bi-envelope" aria-hidden="true"></i> Request</a></div>
+          <article class="project span-6" aria-label="OSV2">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-boxes"></i></div>
+              <div class="badge"><i class="bi bi-cpu"></i></div>
+              <div class="badge"><i class="bi bi-wrench-adjustable"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>OSV2</h3>
+                <span class="tag">System</span>
+              </div>
+              <p class="desc">Internal build.</p>
+              <div class="actions">
+                <a class="pill" href="mailto:samuelmwas262@gmail.com?subject=OSV2%20-%20Request">
+                  <i class="bi bi-envelope" aria-hidden="true"></i> Request
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- REPOS -->
+        <div id="repos" style="height: clamp(18px, 3vw, 28px);"></div>
+        <div class="grid" style="margin-top: clamp(8px, 1.6vw, 14px);">
+          <article class="project span-6" aria-label="Django Ready-Made Backend">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1555066932-1c1b1a2d6c4c?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-github"></i></div>
+              <div class="badge"><i class="bi bi-braces"></i></div>
+              <div class="badge"><i class="bi bi-diagram-2"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>Django Ready-Made Backend</h3>
+                <span class="tag">Django / Python</span>
+              </div>
+              <p class="desc">Backend starter — clean base for APIs, auth, and production-ready structure.</p>
+              <div class="actions">
+                <a class="pill" href="https://github.com/scriptedSyntax/django-with-python-ready-made-backend" target="_blank" rel="noreferrer">
+                  <i class="bi bi-github" aria-hidden="true"></i> Repo
+                </a>
+              </div>
             </div>
           </article>
 
-          <article class="tile tint-a span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=1600&q=80" alt="Messaging platform" /></div>
-            <div class="body">
-              <div class="title"><h3>Main SMS Platform</h3><div class="tagline">Messaging</div></div>
-              <p>Core SMS utilities.</p>
-              <div class="links"><a href="mailto:samuelmwas262@gmail.com?subject=Main%20SMS%20Platform%20-%20Request"><i class="bi bi-envelope" aria-hidden="true"></i> Request</a></div>
+          <article class="project span-6" aria-label="Symptom Checker">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-heart-pulse"></i></div>
+              <div class="badge"><i class="bi bi-braces-asterisk"></i></div>
+              <div class="badge"><i class="bi bi-search"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>Symptom Checker</h3>
+                <span class="tag">JavaScript</span>
+              </div>
+              <p class="desc">Prototype utility.</p>
+              <div class="actions">
+                <a class="pill" href="https://github.com/scriptedSyntax/symptomChecker" target="_blank" rel="noreferrer">
+                  <i class="bi bi-github" aria-hidden="true"></i> Repo
+                </a>
+              </div>
             </div>
           </article>
 
-          <article class="tile tint-b span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1600&q=80" alt="Software project" /></div>
-            <div class="body">
-              <div class="title"><h3>OSV2</h3><div class="tagline">System</div></div>
-              <p>Internal build.</p>
-              <div class="links"><a href="mailto:samuelmwas262@gmail.com?subject=OSV2%20-%20Request"><i class="bi bi-envelope" aria-hidden="true"></i> Request</a></div>
+          <article class="project span-6" aria-label="All-in-One Python Portfolio">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-python"></i></div>
+              <div class="badge"><i class="bi bi-collection"></i></div>
+              <div class="badge"><i class="bi bi-lightning"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>All-in-One Python Portfolio</h3>
+                <span class="tag">Python</span>
+              </div>
+              <p class="desc">Python collection.</p>
+              <div class="actions">
+                <a class="pill" href="https://github.com/scriptedSyntax/All-in-One-Python-Projects-Portfolio" target="_blank" rel="noreferrer">
+                  <i class="bi bi-github" aria-hidden="true"></i> Repo
+                </a>
+              </div>
             </div>
           </article>
 
-          <article class="tile featured span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1600&q=80" alt="Backend project" /></div>
-            <div class="body">
-              <div class="title"><h3>Django Ready-Made Backend</h3><div class="tagline">Django / Python</div></div>
-              <p>Backend starter.</p>
-              <div class="links"><a href="https://github.com/scriptedSyntax/django-with-python-ready-made-backend" target="_blank" rel="noreferrer"><i class="bi bi-github" aria-hidden="true"></i> Repo</a></div>
+          <article class="project span-6" aria-label="funTime">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1800&q=80" alt="" loading="lazy" />
+            </div>
+
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-controller"></i></div>
+              <div class="badge"><i class="bi bi-joystick"></i></div>
+              <div class="badge"><i class="bi bi-stars"></i></div>
+            </div>
+
+            <div class="content">
+              <div class="row">
+                <h3>funTime</h3>
+                <span class="tag">Python</span>
+              </div>
+              <p class="desc">Games & experiments.</p>
+              <div class="actions">
+                <a class="pill" href="https://github.com/scriptedSyntax/funTime" target="_blank" rel="noreferrer">
+                  <i class="bi bi-github" aria-hidden="true"></i> Repo
+                </a>
+              </div>
             </div>
           </article>
 
-          <article class="tile span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80" alt="Health utility" /></div>
-            <div class="body">
-              <div class="title"><h3>Symptom Checker</h3><div class="tagline">JavaScript</div></div>
-              <p>Prototype utility.</p>
-              <div class="links"><a href="https://github.com/scriptedSyntax/symptomChecker" target="_blank" rel="noreferrer"><i class="bi bi-github" aria-hidden="true"></i> Repo</a></div>
+          <article class="project span-12" aria-label="programs">
+            <div class="img" aria-hidden="true">
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=2000&q=80" alt="" loading="lazy" />
             </div>
-          </article>
 
-          <article class="tile tint-a span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1600&q=80" alt="Python portfolio" /></div>
-            <div class="body">
-              <div class="title"><h3>All-in-One Python Portfolio</h3><div class="tagline">Python</div></div>
-              <p>Python collection.</p>
-              <div class="links"><a href="https://github.com/scriptedSyntax/All-in-One-Python-Projects-Portfolio" target="_blank" rel="noreferrer"><i class="bi bi-github" aria-hidden="true"></i> Repo</a></div>
+            <div class="icon-cluster" aria-hidden="true">
+              <div class="badge"><i class="bi bi-terminal"></i></div>
+              <div class="badge"><i class="bi bi-tools"></i></div>
+              <div class="badge"><i class="bi bi-box"></i></div>
             </div>
-          </article>
 
-          <article class="tile tint-b span-6">
-            <div class="img"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80" alt="Games" /></div>
-            <div class="body">
-              <div class="title"><h3>funTime</h3><div class="tagline">Python</div></div>
-              <p>Games &amp; experiments.</p>
-              <div class="links"><a href="https://github.com/scriptedSyntax/funTime" target="_blank" rel="noreferrer"><i class="bi bi-github" aria-hidden="true"></i> Repo</a></div>
-            </div>
-          </article>
-
-          <article class="tile span-12">
-            <div class="img" style="height: 280px;"><img src="https://images.unsplash.com/photo-1555066932-1c1b1a2d6c4c?auto=format&fit=crop&w=1800&q=80" alt="Utilities" /></div>
-            <div class="body">
-              <div class="title"><h3>programs</h3><div class="tagline">Python</div></div>
-              <p>Utilities &amp; scripts.</p>
-              <div class="links"><a href="https://github.com/scriptedSyntax/programs" target="_blank" rel="noreferrer"><i class="bi bi-github" aria-hidden="true"></i> Repo</a></div>
+            <div class="content">
+              <div class="row">
+                <h3>programs</h3>
+                <span class="tag">Python</span>
+              </div>
+              <p class="desc">Utilities & scripts.</p>
+              <div class="actions">
+                <a class="pill" href="https://github.com/scriptedSyntax/programs" target="_blank" rel="noreferrer">
+                  <i class="bi bi-github" aria-hidden="true"></i> Repo
+                </a>
+              </div>
             </div>
           </article>
         </div>
@@ -568,97 +1232,108 @@
     </section>
 
     <!-- SKILLS -->
-    <section class="plain" id="skills">
+    <section class="section" id="skills">
       <div class="wrap">
-        <div class="section-head" style="margin-bottom: 10px;">
+        <div class="section-head">
           <div>
-            <p class="kicker">Skills</p>
-            <h2>Core skills.</h2>
+            <p class="kicker"><span class="dot" aria-hidden="true"></span> Skills</p>
+            <h2>Core capabilities.</h2>
           </div>
-          <p>Backend engineering, automation, data, and delivery.</p>
+          <p class="muted hide-sm">Less talk. Built for delivery, reliability, and scale.</p>
         </div>
 
-        <div class="presence-grid">
-          <div class="presence-card featured">
-            <div class="presence-top"><strong>Backend &amp; Integrations</strong><i class="bi bi-hdd-network" aria-hidden="true"></i></div>
-            <ul class="skill-list">
+        <div class="skill-grid">
+          <div class="panel">
+            <div class="panel-top">
+              <strong>Backend & Integrations</strong>
+              <i class="bi bi-hdd-network" aria-hidden="true"></i>
+            </div>
+            <ul class="list">
               <li>Django / Python / REST</li>
-              <li>Node.js / microservices</li>
               <li>Auth / security / interoperability</li>
               <li>Cloud deployment / scaling</li>
             </ul>
           </div>
 
-          <div class="presence-card">
-            <div class="presence-top"><strong>Automation</strong><i class="bi bi-gear" aria-hidden="true"></i></div>
-            <ul class="skill-list">
+          <div class="panel">
+            <div class="panel-top">
+              <strong>Automation</strong>
+              <i class="bi bi-gear" aria-hidden="true"></i>
+            </div>
+            <ul class="list">
               <li>Workflow automation</li>
               <li>System optimization</li>
               <li>CI/CD / logging / monitoring</li>
-              <li>API-driven improvements</li>
             </ul>
           </div>
 
-          <div class="presence-card">
-            <div class="presence-top"><strong>Data &amp; Infra</strong><i class="bi bi-database" aria-hidden="true"></i></div>
-            <ul class="skill-list">
-              <li>PostgreSQL / SQLite / MySQL</li>
+          <div class="panel">
+            <div class="panel-top">
+              <strong>Data & Infra</strong>
+              <i class="bi bi-database" aria-hidden="true"></i>
+            </div>
+            <ul class="list">
+              <li>PostgreSQL / MySQL</li>
               <li>Pandas / NumPy workflows</li>
-              <li>IoT / device connectivity</li>
               <li>Linux / Git</li>
             </ul>
           </div>
 
-          <div class="presence-card">
-            <div class="presence-top"><strong>Leadership</strong><i class="bi bi-people" aria-hidden="true"></i></div>
-            <ul class="skill-list">
-              <li>Mentorship / training</li>
-              <li>Cross-team communication</li>
-              <li>Requirements / solution design</li>
-              <li>Docs / SOPs / compliance</li>
+          <div class="panel">
+            <div class="panel-top">
+              <strong>AI Platforms</strong>
+              <i class="bi bi-cpu" aria-hidden="true"></i>
+            </div>
+            <ul class="list">
+              <li>AI-enabled backend patterns</li>
+              <li>Document processing pipelines</li>
+              <li>Semantic search / RAG-style workflows</li>
             </ul>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- LINKS (no description) -->
-    <section class="plain" id="presence">
-      <div class="wrap">
-        <div class="section-head" style="margin-bottom: 10px;">
-          <div>
-            <p class="kicker">Presence</p>
-            <h2>Links.</h2>
+          <div class="panel" style="grid-column: 1 / -1;">
+            <div class="panel-top">
+              <strong>Certifications & Technical Training</strong>
+              <i class="bi bi-award" aria-hidden="true"></i>
+            </div>
+            <p class="kicker" style="margin: 2px 0 0; color: var(--faint);">
+              QA • Imaging • Clinical systems
+            </p>
+            <div class="chips" style="margin-top:12px;">
+              <span class="chip">Medical Device QA &amp; Safety (Fluke Biomedical)</span>
+              <span class="chip">Advanced Imaging QA — PET/CT &amp; SPECT/CT (GE Healthcare)</span>
+              <span class="chip">Clinical Systems &amp; Simulation — Oxygen QA, ProSim 4 &amp; 8</span>
+              <span class="chip">GitHub Actions (CI/CD)</span>
+              <span class="chip">Docker (container-ready)</span>
+              <span class="chip">Azure-ready architecture</span>
+            </div>
           </div>
         </div>
-
-        <div class="presence-grid">
-          <a class="cardlink" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer" aria-label="Open GitHub"><div class="presence-card"><div class="presence-top"><strong>GitHub</strong><i class="bi bi-github" aria-hidden="true"></i></div><div class="presence-meta">Profile</div></div></a>
-          <a class="cardlink" href="https://www.linkedin.com/in/samuel-mwangi-11597a245/" target="_blank" rel="noreferrer" aria-label="Open LinkedIn"><div class="presence-card featured"><div class="presence-top"><strong>LinkedIn</strong><i class="bi bi-linkedin" aria-hidden="true"></i></div><div class="presence-meta">Network</div></div></a>
-          <a class="cardlink" href="https://www.youtube.com/@SamPlifiedBytes" target="_blank" rel="noreferrer" aria-label="Open YouTube"><div class="presence-card"><div class="presence-top"><strong>YouTube</strong><i class="bi bi-youtube" aria-hidden="true"></i></div><div class="presence-meta">Videos</div></div></a>
-          <a class="cardlink" href="mailto:samuelmwas262@gmail.com" aria-label="Email"><div class="presence-card"><div class="presence-top"><strong>Email</strong><i class="bi bi-envelope" aria-hidden="true"></i></div><div class="presence-meta">Direct</div></div></a>
-          <a class="cardlink" href="final%20samuel%20mwangi%20cv.pdf" target="_blank" rel="noreferrer" aria-label="Open CV PDF"><div class="presence-card"><div class="presence-top"><strong>CV</strong><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i></div><div class="presence-meta">PDF</div></div></a>
-          <a class="cardlink" href="#work" aria-label="Jump to projects"><div class="presence-card"><div class="presence-top"><strong>Projects</strong><i class="bi bi-grid" aria-hidden="true"></i></div><div class="presence-meta">Work</div></div></a>
-        </div>
       </div>
     </section>
 
-    <!-- CONTACT (no description) -->
-    <section class="band" id="contact">
+    <!-- CONTACT -->
+    <section class="section" id="contact">
       <div class="wrap">
         <div class="section-head">
           <div>
-            <p class="kicker">Contact</p>
+            <p class="kicker"><span class="dot" aria-hidden="true"></span> Contact</p>
             <h2>Direct.</h2>
           </div>
+          <p class="muted hide-sm">Fast response for backend systems, automation, and product-grade engineering.</p>
         </div>
 
         <div class="contact">
-          <div class="left"><strong>Email</strong><span>samuelmwas262@gmail.com</span></div>
-          <div style="display:flex; gap:12px; flex-wrap:wrap;">
-            <a class="nav-icon" style="width:auto; padding: 0 14px;" href="mailto:samuelmwas262@gmail.com"><i class="bi bi-envelope" aria-hidden="true"></i>&nbsp;Email</a>
-            <a class="nav-icon secondary" style="width:auto; padding: 0 14px;" href="https://www.linkedin.com/in/samuel-mwangi-11597a245/" target="_blank" rel="noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>&nbsp;LinkedIn</a>
-            <a class="nav-icon" style="width:auto; padding: 0 14px; background: var(--surface); color: rgba(10,14,22,0.86); border-color: var(--line); box-shadow: var(--shadow2);" href="#top"><i class="bi bi-arrow-up" aria-hidden="true"></i>&nbsp;Top</a>
+          <div>
+            <strong>Email</strong>
+            <span>samuelmwas262@gmail.com</span>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn primary" href="mailto:samuelmwas262@gmail.com"><i class="bi bi-envelope" aria-hidden="true"></i>Email</a>
+            <a class="btn" href="https://www.linkedin.com/in/samuel-mwangi-11597a245/" target="_blank" rel="noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a>
+            <a class="btn" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer"><i class="bi bi-github" aria-hidden="true"></i>GitHub</a>
+            <a class="btn" href="final%20samuel%20mwangi%20cv.pdf" target="_blank" rel="noreferrer"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i>CV</a>
           </div>
         </div>
       </div>
@@ -668,16 +1343,7 @@
   <footer>
     <div class="wrap">
       <div class="foot">
-        <div>
-          <span class="foot-logo" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="12" stroke-width="1.8" />
-              <path d="M8 20h8" stroke-width="1.8" />
-              <path d="M6 18h12" stroke-width="1.8" />
-            </svg>
-          </span>
-          <strong>© <span id="y"></span> Samuel Mwangi</strong>
-        </div>
+        <div><strong style="color:var(--ink); font-weight:900;">© <span id="y"></span> Samuel Mwangi</strong></div>
         <div class="foot-links" aria-label="Footer links">
           <a href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer">GitHub</a>
           <a href="https://www.linkedin.com/in/samuel-mwangi-11597a245/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -688,47 +1354,121 @@
     </div>
   </footer>
 
-  <button class="to-top" id="toTop" aria-label="Back to top">
-    <i class="bi bi-arrow-up" aria-hidden="true"></i>
-  </button>
-  <div class="to-top-tip" id="toTopTip">Back to top</div>
+  <!-- Floating stack: Back-to-top ABOVE Theme toggle -->
+  <div class="float-stack" aria-label="Floating actions">
+    <button class="floatbtn top" id="toTop" aria-label="Back to top">
+      <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button>
+    <button class="floatbtn" id="themeBtn" aria-label="Toggle theme">
+      <i class="bi bi-sun" aria-hidden="true"></i>
+    </button>
+  </div>
 
   <script>
+    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
+    // Smooth scroll (respect reduced motion)
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduceMotion) document.documentElement.style.scrollBehavior = 'smooth';
 
-    // Back to top
-    const toTop = document.getElementById('toTop');
-    const tip = document.getElementById('toTopTip');
-    const showAfter = 420;
-    let tipTimer = null;
-    let hasShownTipThisSession = false;
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-    function showTipFor5s(){
-      if (hasShownTipThisSession) return;
-      hasShownTipThisSession = true;
-      tip.classList.add('show');
-      clearTimeout(tipTimer);
-      tipTimer = setTimeout(() => tip.classList.remove('show'), 5000);
+    function closeMenu(){
+      if (!mobileMenu) return;
+      mobileMenu.hidden = true;
+      mobileMenu.style.display = 'none';
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    }
+    function openMenu(){
+      if (!mobileMenu) return;
+      mobileMenu.hidden = false;
+      mobileMenu.style.display = 'block';
+      menuBtn?.setAttribute('aria-expanded', 'true');
     }
 
-    function onScroll(){
-      if (window.scrollY > showAfter) {
-        const wasHidden = !toTop.classList.contains('show');
-        toTop.classList.add('show');
-        if (wasHidden) showTipFor5s();
-      } else {
-        toTop.classList.remove('show');
-        tip.classList.remove('show');
+    menuBtn?.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      expanded ? closeMenu() : openMenu();
+    });
+
+    mobileMenu?.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
+      if (a) closeMenu();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeMenu();
+    });
+
+    // Seg nav active state (ALL / SYSTEMS / REPOS) based on scroll position
+    const segLinks = Array.from(document.querySelectorAll('.seg a'));
+    const sections = [
+      { id: 'work', el: document.getElementById('work') },
+      { id: 'systems', el: document.getElementById('systems') },
+      { id: 'repos', el: document.getElementById('repos') }
+    ].filter(s => s.el);
+
+    function setActiveSeg(id){
+      segLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === `#${id}`));
+    }
+
+    function onScrollActiveSeg(){
+      // Find the last section above the fold
+      const y = window.scrollY + 160;
+      let current = 'work';
+      for (const s of sections){
+        const top = s.el.getBoundingClientRect().top + window.scrollY;
+        if (y >= top) current = s.id;
       }
+      setActiveSeg(current === 'systems' || current === 'repos' ? current : 'work');
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('scroll', onScrollActiveSeg, { passive:true });
+    onScrollActiveSeg();
 
+    // Back to top visibility
+    const toTop = document.getElementById('toTop');
+    const showAfter = 480;
+    function onScrollTopBtn(){
+      if (window.scrollY > showAfter) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    }
+    window.addEventListener('scroll', onScrollTopBtn, { passive:true });
+    onScrollTopBtn();
     toTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+
+    // Theme toggle (floating next to toTop; toTop ABOVE theme)
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+
+    // Load saved theme if present; default is dark (per your screenshots)
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') root.setAttribute('data-theme', savedTheme);
+
+    function syncThemeIcon(){
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      themeBtn.innerHTML = isDark
+        ? '<i class="bi bi-sun" aria-hidden="true"></i>'
+        : '<i class="bi bi-moon-stars" aria-hidden="true"></i>';
+      themeBtn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    }
+    syncThemeIcon();
+
+    themeBtn.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      syncThemeIcon();
+    });
+
+    // Safety: never allow horizontal scroll caused by any element
+    // (If something tries to overflow, we clamp it)
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.style.overflowX = 'hidden';
     });
   </script>
 </body>
