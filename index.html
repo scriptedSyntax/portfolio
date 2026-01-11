@@ -10,6 +10,18 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 
+  <!-- Set theme from system preference ASAP (and keep manual override if saved) -->
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const stored = localStorage.getItem('theme');
+      const mq = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+      const systemTheme = mq && mq.matches ? 'dark' : 'light';
+      const theme = (stored === 'dark' || stored === 'light') ? stored : systemTheme;
+      root.setAttribute('data-theme', theme);
+    })();
+  </script>
+
   <style>
     :root{
       /* Layout */
@@ -1468,13 +1480,26 @@
       window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
     });
 
-    // Theme toggle (floating next to toTop; toTop ABOVE theme)
+    // Theme: follow device theme unless user has manually overridden via localStorage
     const root = document.documentElement;
     const themeBtn = document.getElementById('themeBtn');
+    const systemMQ = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
 
-    // Load saved theme if present; default is dark (per your screenshots)
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark' || savedTheme === 'light') root.setAttribute('data-theme', savedTheme);
+    function getStoredTheme(){
+      const t = localStorage.getItem('theme');
+      return (t === 'dark' || t === 'light') ? t : null;
+    }
+
+    function applyTheme(theme){
+      root.setAttribute('data-theme', theme);
+    }
+
+    function applySystemThemeIfNoOverride(){
+      if (getStoredTheme()) return;
+      const theme = systemMQ && systemMQ.matches ? 'dark' : 'light';
+      applyTheme(theme);
+      syncThemeIcon();
+    }
 
     function syncThemeIcon(){
       const isDark = root.getAttribute('data-theme') === 'dark';
@@ -1483,22 +1508,30 @@
         : '<i class="bi bi-moon-stars" aria-hidden="true"></i>';
       themeBtn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
     }
+
+    // Ensure icon matches current theme (set in head)
     syncThemeIcon();
 
+    // React to OS theme changes (only if no manual override)
+    if (systemMQ){
+      const onChange = () => applySystemThemeIfNoOverride();
+      if (typeof systemMQ.addEventListener === 'function') systemMQ.addEventListener('change', onChange);
+      else if (typeof systemMQ.addListener === 'function') systemMQ.addListener(onChange);
+    }
+
+    // Manual toggle still works; saves override
     themeBtn.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
+      applyTheme(next);
       localStorage.setItem('theme', next);
       syncThemeIcon();
     });
 
     // Safety: never allow horizontal scroll caused by any element
-    // (If something tries to overflow, we clamp it)
     document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflowX = 'hidden';
+      applySystemThemeIfNoOverride();
     });
   </script>
 </body>
 </html>
-
-
