@@ -2759,7 +2759,7 @@
     window.addEventListener('load', () => {
       if (!offerModal || typeof offerModal.showModal !== 'function') return;
       if (sessionStorage.getItem(offerKey)) return;
-      window.setTimeout(() => offerModal.showModal(), reduceMotion ? 1200 : 4200);
+      window.setTimeout(() => offerModal.showModal(), reduceMotion ? 1200 : 10000);
     });
 
     closeOffer?.addEventListener('click', closeHostingOffer);
