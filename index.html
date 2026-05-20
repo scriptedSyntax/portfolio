@@ -5,7 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DigitalClick Systems | Websites, Systems, Automation, Hosting</title>
   <meta name="description" content="DigitalClick Systems builds websites and systems that help clients trust, click, and take action.">
-  <meta name="theme-color" content="#050816">
+  <meta name="theme-color" id="themeColor" content="#050816">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://scriptedsyntax.github.io/portfolio/">
+  <meta property="og:title" content="DigitalClick Systems">
+  <meta property="og:description" content="Websites and systems that help clients trust, click, and take action.">
+  <meta property="og:image" content="https://scriptedsyntax.github.io/portfolio/og-image.png">
+  <meta property="og:image:secure_url" content="https://scriptedsyntax.github.io/portfolio/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="DigitalClick Systems website and business console preview">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DigitalClick Systems">
+  <meta name="twitter:description" content="Websites and systems that help clients trust, click, and take action.">
+  <meta name="twitter:image" content="https://scriptedsyntax.github.io/portfolio/og-image.png">
+  <link rel="image_src" href="og-image.png">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050816'/%3E%3Cpath d='M17 22h30M17 32h20M17 42h28' stroke='%2338BDF8' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M48 15 55 22 48 29' fill='none' stroke='%238B5CF6' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -13,7 +27,8 @@
   <script>
     (() => {
       const savedTheme = localStorage.getItem('dcs-theme');
-      document.documentElement.setAttribute('data-theme', savedTheme || 'dark');
+      const systemTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme || systemTheme);
     })();
   </script>
 
@@ -553,14 +568,19 @@
     }
 
     .dash-logo {
-      width: 34px;
-      height: 34px;
+      width: 46px;
+      height: 46px;
       display: grid;
       place-items: center;
-      border-radius: 10px;
+      border-radius: 14px;
       background: rgba(56,189,248,0.14);
       border: 1px solid rgba(56,189,248,0.24);
       color: var(--primary);
+      box-shadow: 0 0 22px rgba(56,189,248,0.14);
+    }
+
+    .dash-logo i {
+      font-size: 24px;
     }
 
     .dash-title strong {
@@ -731,7 +751,7 @@
     }
 
     .tech-marquee {
-      padding-top: 0;
+      padding-top: 10px;
     }
 
     .marquee-shell {
@@ -851,6 +871,10 @@
       filter: invert(1);
     }
 
+    [data-theme="light"] .brand-icon.invert {
+      filter: none;
+    }
+
     @keyframes stackScroll {
       from {
         transform: translateX(0);
@@ -960,6 +984,17 @@
         linear-gradient(135deg, rgba(56,189,248,0.18), transparent 46%);
     }
 
+    .visual-card::after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      z-index: 2;
+      pointer-events: none;
+      border: 1px solid rgba(248,250,252,0.18);
+      border-radius: 12px;
+      opacity: 0.72;
+    }
+
     .visual-card.web {
       background-image:
         linear-gradient(135deg, rgba(56,189,248,0.14), rgba(139,92,246,0.08)),
@@ -997,6 +1032,22 @@
       text-shadow: 0 2px 16px rgba(0,0,0,0.58);
     }
 
+    [data-theme="light"] .visual-content p {
+      color: rgba(248,250,252,0.95);
+    }
+
+    [data-theme="light"] .visual-card::after {
+      border-color: rgba(248,250,252,0.26);
+    }
+
+    @media (max-width: 760px) {
+      .visual-card.is-inview {
+        transform: translateY(-4px);
+        border-color: rgba(56,189,248,0.38);
+        box-shadow: var(--glow), 0 20px 58px rgba(0,0,0,0.24);
+      }
+    }
+
     .card-icon {
       width: 46px;
       height: 46px;
@@ -1028,6 +1079,11 @@
       padding: 0;
       margin: 12px 0 0;
       list-style: none;
+    }
+
+    .services-cta {
+      justify-content: center;
+      margin-top: clamp(24px, 4vw, 38px);
     }
 
     .service-card li,
@@ -1742,7 +1798,7 @@
         <a class="icon-btn" href="https://www.linkedin.com/in/samuel-mwangi-11597a245/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
           <i class="bi bi-linkedin" aria-hidden="true"></i>
         </a>
-        <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Start a Project</a>
+        <a class="btn primary" href="#services"><i class="bi bi-send" aria-hidden="true"></i>Start a Project</a>
         <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
           <i class="bi bi-list" aria-hidden="true"></i>
         </button>
@@ -1772,9 +1828,9 @@
           </p>
 
           <div class="hero-actions">
-            <a class="btn primary" href="#contact"><i class="bi bi-rocket-takeoff" aria-hidden="true"></i>Start a Project</a>
-            <a class="btn secondary" href="#contact"><i class="bi bi-grid-1x2" aria-hidden="true"></i>View Services</a>
-            <a class="btn" href="#contact"><i class="bi bi-kanban" aria-hidden="true"></i>See Work</a>
+            <a class="btn primary" href="#services"><i class="bi bi-rocket-takeoff" aria-hidden="true"></i>Start a Project</a>
+            <a class="btn secondary" href="#services"><i class="bi bi-grid-1x2" aria-hidden="true"></i>View Services</a>
+            <a class="btn" href="#work"><i class="bi bi-kanban" aria-hidden="true"></i>See Work</a>
           </div>
 
           <ul class="hero-proof">
@@ -1808,19 +1864,19 @@
           <div class="metrics-grid">
             <div class="metric">
               <i class="bi bi-window-stack" aria-hidden="true"></i>
-              <div><strong>12+</strong><span>Websites</span></div>
+              <div><strong class="count-up" data-target="12" data-suffix="+">0</strong><span>Websites</span></div>
             </div>
             <div class="metric">
               <i class="bi bi-hdd-network" aria-hidden="true"></i>
-              <div><strong>8+</strong><span>Systems</span></div>
+              <div><strong class="count-up" data-target="8" data-suffix="+">0</strong><span>Systems</span></div>
             </div>
             <div class="metric">
               <i class="bi bi-headset" aria-hidden="true"></i>
-              <div><strong>Care</strong><span>Updates and fixes</span></div>
+              <div><strong class="count-up" data-target="24" data-suffix="/7">0</strong><span>Support</span></div>
             </div>
             <div class="metric">
               <i class="bi bi-shield-check" aria-hidden="true"></i>
-              <div><strong>Safe</strong><span>Access basics</span></div>
+              <div><strong class="count-up" data-target="81" data-suffix="%">0</strong><span>Safety basics</span></div>
             </div>
           </div>
 
@@ -2088,6 +2144,11 @@
             </ul>
           </article>
         </div>
+
+        <div class="section-actions services-cta">
+          <a class="btn primary js-contact-call" href="#contact"><i class="bi bi-telephone-outbound" aria-hidden="true"></i>Start Project Now</a>
+          <a class="btn secondary" href="#packages"><i class="bi bi-box-seam" aria-hidden="true"></i>See Packages</a>
+        </div>
       </div>
     </section>
 
@@ -2182,7 +2243,7 @@
               <p><strong>Value:</strong> Cleaner follow-up.</p>
             </div>
             <div class="card-actions">
-              <a class="btn primary" href="#contact"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>View Demo</a>
+              <a class="btn primary" href="https://github.com/scriptedSyntax" target="_blank" rel="noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>View Repos</a>
               <a class="btn" href="#contact">Request Similar</a>
             </div>
           </article>
@@ -2350,8 +2411,8 @@
               Professional software developer for websites, dashboards, automation, hosting, biomedical workflows, and technical support.
             </p>
             <div class="section-actions">
-              <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Start a Project</a>
-              <a class="btn" href="#contact"><i class="bi bi-whatsapp" aria-hidden="true"></i>Contact</a>
+              <a class="btn primary" href="#services"><i class="bi bi-send" aria-hidden="true"></i>Start a Project</a>
+              <a class="btn" href="https://wa.me/254799594621" target="_blank" rel="noreferrer"><i class="bi bi-whatsapp" aria-hidden="true"></i>Contact</a>
             </div>
           </div>
           <div class="founder-stats" role="group" aria-label="Founder focus areas">
@@ -2384,7 +2445,7 @@
             <div class="contact-actions">
               <a class="btn primary" href="mailto:samuelmwas262@gmail.com?subject=New%20Project%20Inquiry"><i class="bi bi-envelope" aria-hidden="true"></i>Email Us</a>
               <a class="btn secondary" href="https://wa.me/254799594621" target="_blank" rel="noreferrer"><i class="bi bi-whatsapp" aria-hidden="true"></i>WhatsApp</a>
-              <a class="btn" href="tel:0799594621"><i class="bi bi-telephone" aria-hidden="true"></i>Call</a>
+              <a class="btn" id="callButton" href="tel:0799594621"><i class="bi bi-telephone" aria-hidden="true"></i>Call</a>
               <a class="btn" href="mailto:samuelmwas262@gmail.com?subject=Request%20Quote%20-%20DigitalClick%20Systems"><i class="bi bi-receipt" aria-hidden="true"></i>Request Quote</a>
             </div>
           </div>
@@ -2497,10 +2558,10 @@
       </div>
 
       <div class="section-actions">
-        <a class="btn primary" href="#contact">
+        <a class="btn primary" href="#services">
           <i class="bi bi-send" aria-hidden="true"></i>Start a Project
         </a>
-        <a class="btn" href="#contact">
+        <a class="btn" href="mailto:samuelmwas262@gmail.com?subject=Professional%20Background%20Inquiry">
           <i class="bi bi-envelope" aria-hidden="true"></i>Ask About Background
         </a>
       </div>
@@ -2560,6 +2621,15 @@
 
     const root = document.documentElement;
     const themeBtn = document.getElementById('themeBtn');
+    const themeColor = document.getElementById('themeColor');
+    const systemThemeQuery = window.matchMedia('(prefers-color-scheme: light)');
+
+    function setTheme(theme, persist = false) {
+      root.setAttribute('data-theme', theme);
+      themeColor?.setAttribute('content', theme === 'dark' ? '#050816' : '#f7f9fc');
+      if (persist) localStorage.setItem('dcs-theme', theme);
+      syncThemeButton();
+    }
 
     function syncThemeButton() {
       if (!themeBtn) return;
@@ -2571,13 +2641,98 @@
     }
 
     syncThemeButton();
+    themeColor?.setAttribute('content', root.getAttribute('data-theme') === 'dark' ? '#050816' : '#f7f9fc');
+
+    systemThemeQuery.addEventListener?.('change', (event) => {
+      if (localStorage.getItem('dcs-theme')) return;
+      setTheme(event.matches ? 'light' : 'dark');
+    });
 
     themeBtn?.addEventListener('click', () => {
       const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', nextTheme);
-      localStorage.setItem('dcs-theme', nextTheme);
-      syncThemeButton();
+      setTheme(nextTheme, true);
     });
+
+    const contactSection = document.getElementById('contact');
+    const callButton = document.getElementById('callButton');
+
+    document.querySelectorAll('.js-contact-call').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        contactSection?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        window.setTimeout(() => {
+          if (callButton?.href) window.location.href = callButton.href;
+        }, reduceMotion ? 120 : 850);
+      });
+    });
+
+    const counters = document.querySelectorAll('.count-up');
+
+    function finishCounter(counter) {
+      counter.textContent = `${counter.dataset.target || '0'}${counter.dataset.suffix || ''}`;
+    }
+
+    function animateCounter(counter) {
+      if (counter.dataset.counted === 'true') return;
+      counter.dataset.counted = 'true';
+
+      if (reduceMotion) {
+        finishCounter(counter);
+        return;
+      }
+
+      const target = Number(counter.dataset.target || 0);
+      const suffix = counter.dataset.suffix || '';
+      let ticks = 0;
+      const maxTicks = 18;
+      const timer = window.setInterval(() => {
+        ticks += 1;
+        if (ticks >= maxTicks) {
+          window.clearInterval(timer);
+          finishCounter(counter);
+          return;
+        }
+        const floor = Math.max(0, target - 9);
+        const ceiling = Math.max(target + 9, 12);
+        const value = Math.floor(Math.random() * (ceiling - floor + 1)) + floor;
+        counter.textContent = `${value}${suffix}`;
+      }, 48);
+    }
+
+    if ('IntersectionObserver' in window) {
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animateCounter(entry.target);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.55 });
+      counters.forEach((counter) => counterObserver.observe(counter));
+    } else {
+      counters.forEach(animateCounter);
+    }
+
+    const mobileFocusQuery = window.matchMedia('(max-width: 760px)');
+    const visualCards = document.querySelectorAll('.visual-card');
+    let visualObserver;
+
+    function setupVisualFocus() {
+      visualObserver?.disconnect();
+      visualCards.forEach((card) => card.classList.remove('is-inview'));
+      if (!mobileFocusQuery.matches || !('IntersectionObserver' in window)) return;
+
+      visualObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle('is-inview', entry.isIntersecting && entry.intersectionRatio > 0.52);
+        });
+      }, { threshold: [0.35, 0.52, 0.7] });
+
+      visualCards.forEach((card) => visualObserver.observe(card));
+    }
+
+    setupVisualFocus();
+    mobileFocusQuery.addEventListener?.('change', setupVisualFocus);
 
     const offerModal = document.getElementById('offerModal');
     const closeOffer = document.getElementById('closeOffer');
