@@ -10,16 +10,18 @@
   <meta property="og:url" content="https://scriptedsyntax.github.io/portfolio/">
   <meta property="og:title" content="DigitalClick Systems">
   <meta property="og:description" content="Websites and systems that help clients trust, click, and take action.">
-  <meta property="og:image" content="https://scriptedsyntax.github.io/portfolio/og-image.png">
-  <meta property="og:image:secure_url" content="https://scriptedsyntax.github.io/portfolio/og-image.png">
+  <meta property="og:image" content="https://raw.githubusercontent.com/scriptedSyntax/portfolio/main/og-image.png">
+  <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/scriptedSyntax/portfolio/main/og-image.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="DigitalClick Systems website and business console preview">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="DigitalClick Systems">
   <meta name="twitter:description" content="Websites and systems that help clients trust, click, and take action.">
-  <meta name="twitter:image" content="https://scriptedsyntax.github.io/portfolio/og-image.png">
-  <link rel="image_src" href="og-image.png">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/scriptedSyntax/portfolio/main/og-image.png">
+  <link rel="image_src" href="https://raw.githubusercontent.com/scriptedSyntax/portfolio/main/og-image.png">
+  <link rel="alternate" type="image/svg+xml" href="https://raw.githubusercontent.com/scriptedSyntax/portfolio/main/og-image.svg">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050816'/%3E%3Cpath d='M17 22h30M17 32h20M17 42h28' stroke='%2338BDF8' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M48 15 55 22 48 29' fill='none' stroke='%238B5CF6' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -667,6 +669,11 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.35;
+    }
+
+    .status-secure {
+      color: var(--highlight);
+      text-shadow: 0 0 18px rgba(34,197,94,0.28);
     }
 
     .dash-flow {
@@ -1876,7 +1883,7 @@
             </div>
             <div class="metric">
               <i class="bi bi-shield-check" aria-hidden="true"></i>
-              <div><strong class="count-up" data-target="81" data-suffix="%">0</strong><span>Safety basics</span></div>
+              <div><strong class="status-secure">Secure</strong><span>Security</span></div>
             </div>
           </div>
 
@@ -1892,9 +1899,9 @@
               <strong>72%</strong>
             </div>
             <div class="flow-row">
-              <span>Security basics</span>
+              <span>Security</span>
               <span class="flow-track"><span class="flow-bar w-81"></span></span>
-              <strong>81%</strong>
+              <strong>Ready</strong>
             </div>
           </div>
         </aside>
@@ -2212,7 +2219,7 @@
               <li>Updates</li>
               <li>Bug fixes</li>
               <li>Hosting checks</li>
-              <li>Security basics</li>
+              <li>Security</li>
             </ul>
             <div class="card-actions">
               <a class="btn primary" href="#contact"><i class="bi bi-send" aria-hidden="true"></i>Start Support Plan</a>
@@ -2752,7 +2759,7 @@
     window.addEventListener('load', () => {
       if (!offerModal || typeof offerModal.showModal !== 'function') return;
       if (sessionStorage.getItem(offerKey)) return;
-      window.setTimeout(() => offerModal.showModal(), reduceMotion ? 200 : 850);
+      window.setTimeout(() => offerModal.showModal(), reduceMotion ? 1200 : 4200);
     });
 
     closeOffer?.addEventListener('click', closeHostingOffer);
